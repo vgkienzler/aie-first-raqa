@@ -69,7 +69,9 @@ class VectorDatabase:
             file_name: Optional[str] = None,
             build_tree=True,
     ) -> None:
+        # Older version of the storage
         self.vectors[key] = vector
+        # Storage for the Annoy search engine
         self.ann_index.add_item(
             self.ann_index.get_n_items(),
             vector
@@ -103,6 +105,8 @@ class VectorDatabase:
     def retrieve_from_key(self, key: str) -> np.array:
         return self.vectors.get(key, None)
 
+    # This method has been modified to build a second, parallel storage compatible with
+    # the Annoy search engine and with metadata.
     async def abuild_from_list(
             self,
             list_of_text: List[str],

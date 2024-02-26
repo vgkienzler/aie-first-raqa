@@ -1,3 +1,5 @@
+""" These functions are only used as examples and are not used in the final implementation. """
+
 from annoy import AnnoyIndex
 
 
