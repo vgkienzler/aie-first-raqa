@@ -53,6 +53,8 @@ class VectorDatabase:
         self.vectors = defaultdict(np.array)
         self.embedding_model = embedding_model or EmbeddingModel()
         self.search_engine = search_cosine_similarity
+
+        # The following attributes are used with the ANN search
         self.ann_index: AnnoyIndex = AnnoyIndex(vector_dim, 'angular')
         self.vectors_as_list = []  # Needed to get the vectors after using ANN
         self.chunks: List[str] = []
