@@ -3,6 +3,8 @@ from typing import List
 from pdfminer.high_level import extract_text
 
 
+# TextExtractor has been refactored to be a class that can extract text from
+# both .txt and .pdf files, and could be further expanded to support other file types.
 class TextExtractor:
     def __init__(self):
         self.path = ""
@@ -36,6 +38,9 @@ class FileLoader:
     def __init__(self, path: str):
         self.documents = []
         self.path = path
+        # This structure that mimics the 'strategy' pattern is used to make it easier to
+        # modify the FileLoader class to work with pdf and later with other types of files.
+        # It will also allow to change the TextExtractor easily.
         self.TextExtractor = TextExtractor()
 
     def _load_file(self, path=None):
